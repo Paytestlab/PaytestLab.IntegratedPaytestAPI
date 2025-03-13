@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  title: BullochTech API - PaytestAPI
+  title: IntegratedPaytestAPI
   contact:
     name: Support
     email: support@paytestlab.com
-  version: 1.0.1
+  version: 1.0.2
 servers:
   - url: https://127.0.0.1:[port]
 tags:
@@ -20,7 +20,7 @@ paths:
         - transaction
       summary: Starts a transaction
       requestBody:
-        description: Starts a new transaction and optionally provides a callback URL for transaction completion notification
+        description: Starts a new transaction and provides a callback URL for transaction completion notification
         required: true
         content:
           application/json:
@@ -30,7 +30,7 @@ paths:
         '200':
           description: Transaction started successfully
         '400':
-          description: Invalid input
+          description: Invalid request
         '500':
           description: Failed to start the transaction
           content:
@@ -50,7 +50,7 @@ paths:
                     schema:
                       $ref: '#/components/schemas/TransactionCompletionNotification'
               responses:
-                '200':
+                '204':
                   description: Notification received successfully
 
   /transaction/abort:
@@ -64,7 +64,7 @@ paths:
             schema:
               $ref: '#/components/schemas/AbortTransactionRequest'
       responses:
-        '200':
+        '204':
           description: Transaction aborted successfully
         '500':
           description: Failed to abort the transaction
@@ -78,6 +78,13 @@ paths:
       tags:
         - status
       summary: Get terminal status
+      parameters:
+      - name: terminalId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the payment terminal.
       responses:
         '200':
           description: Status retrieved successfully
@@ -91,16 +98,118 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+                
+                
+  /webhooks/register:
+    post:
+      tags:
+        - webhooks
+      summary: Register a webhook for terminal event (e.g., terminal state changes)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - terminalId
+              - event
+              - url
+              properties:
+                terminalId:
+                  type: string
+                  description: The ID of the terminal to receive updates for
+                event:
+                  type: string
+                  enum: 
+                    - terminalStatus
+                url:
+                  type: string
+                  format: uri
+                  description: The URL where notifications will be sent
+      responses:
+        '201':
+          description: Webhook registered successfully
+        '500':
+          description: Failed to subscribe to webhook
+      callbacks:
+        terminalStatusUpdate:
+          "{$request.body#/url}":
+            post:
+              summary: Webhook notification for terminal status updates
+              operationId: terminalStatusUpdateCallback
+              requestBody:
+                required: true
+                content:
+                  application/json:
+                    schema:
+                      $ref: "#/components/schemas/StatusNotification"
+              responses:
+                '204':
+                  description: Notification received successfully
 
+  /webhooks/unregister:
+    post:
+      tags:
+        - webhooks
+      summary: Unregister a webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - terminalId
+              - event
+              properties:
+                terminalId:
+                  type: string
+                  description: The ID of the terminal to remove webhook subscriptions for
+                event:
+                  type: string
+                  enum: 
+                    - terminalStatus
+      responses:
+        '204':
+          description: Webhook removed successfully
+        '404':
+          description: No matching webhook found
+        '400':
+          description: Invalid request (e.g., missing terminalId)
+      
+      
 components:
   schemas:
     StartTransactionRequest:
       type: object
+      required:
+        - transactionId
+        - terminalId
+        - transactionInformation
+        - testCaseInformation
+        - callbackUrl
       properties:
         transactionId:
           type: string
           description: Unique identifier for the transaction provided by the client
           example: "123e4567-e89b-12d3-a456-426614174000"
+        terminalId:
+          type: string
+          description: Terminal ID where the transaction should be started
+          example: "26197127"
+        transactionInformation:
+          $ref: '#/components/schemas/TransactionInformation'
+        testCaseInformation:
+          $ref: '#/components/schemas/TestCaseInformation'
+        callbackUrl:
+          type: string
+          format: uri
+          description: URL to notify when the transaction is complete
+          
+    TransactionInformation:
+      type: object
+      properties:
         transactionType:
           type: string
           enum:
@@ -120,23 +229,31 @@ components:
           $ref: '#/components/schemas/Amount'
         referenceNumber:
           type: string
-          example: 123456789
-        callbackUrl:
+          example: "123456789"
+        
+    
+    TestCaseInformation:
+      type: object
+      properties:
+        testCaseName:
           type: string
-          format: uri
-          description: URL to notify when the transaction is complete
-          
+          example: "M-TIP06.Test.01.Scenario.01"
+          description: Name of the test case
+        testCaseId:
+          type: string
+          example: "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+          description: ID of the test case
 
     TransactionCompletionNotification:
       type: object
       required:
         - transactionId
-        - status
+        - transactionStatus
       properties:
         transactionId:
           type: string
           description: Unique identifier for the transaction (from the request)
-        status:
+        transactionStatus:
           type: string
           description: Final status of the transaction
           enum:
@@ -150,15 +267,17 @@ components:
           type: string
         PANTruncated:
           type: string
-        receiptMerchant:
-          type: string
-        receiptCardHolder:
-          type: string
-        receiptCashRegister:
-          type: string
         referenceNumber:
           type: string
-
+        receiptMerchant:
+          $ref: '#/components/schemas/Receipt'
+        receiptCardHolder:
+          $ref: '#/components/schemas/Receipt'
+        receiptCashRegister:
+          $ref: '#/components/schemas/Receipt'
+        hostResponse:
+          $ref: '#/components/schemas/HostResponse'
+    
     Amount:
       type: object
       properties:
@@ -169,9 +288,33 @@ components:
         currency:
           type: string
           example: EUR
-        
+    
+    Receipt:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Plain text of the full receipt
+          
+    HostResponse:
+      type: object
+      properties:
+        responseCode:
+          type: string
+          example: "00"
+          description: "Host response code (e.g., '00' for approved)"
+        responseMessage:
+          type: string
+          description: Readable message from host (e.g., if responseCode was '00' here it woudld be approved)
+        transactionDateTime:
+          type: string
+          format: date-time
+          example: "2025-03-12T14:30:00Z"
+          description: Format year-month-dateThour:minutes:secondsTimeZone
+          
     
     AbortTransactionRequest:
+      type: object
       required:
         - transactionId
       properties:
@@ -212,3 +355,32 @@ components:
         displayContent:
           type: string
           example: Follow instructions on the terminal
+    
+    StatusNotification:
+      type: object
+      required:
+        - terminalId
+        - status
+        - timestamp
+      properties:
+        event:
+          type: string
+          enum:
+            - terminalStatus
+        terminalId:
+          type: string
+          description: The ID of the terminal
+        status:
+          type: string
+          enum: 
+            - idle
+            - activated
+            - pinEntry
+            - waitingForCard
+            - disconnected
+          description: Current status of the terminal
+        timestamp:
+          type: string
+          format: date-time
+          example: "2025-03-12T14:30:00Z"
+          description: Format year-month-dateThour:minutes:secondsTimeZone

@@ -19,6 +19,19 @@ paths:
       tags:
         - transaction
       summary: Starts a transaction
+      parameters:
+        - name: X-TestRun-Id
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Optional identifier for the test run
+        - name: X-TestCase-Id
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Optional identifier for the test case
       requestBody:
         description: Starts a new transaction and provides a callback URL for transaction completion notification
         required: true
@@ -187,7 +200,6 @@ components:
         - transactionId
         - terminalId
         - transactionInformation
-        - testCaseInformation
         - callbackUrl
       properties:
         transactionId:
@@ -200,13 +212,16 @@ components:
           example: "26197127"
         transactionInformation:
           $ref: '#/components/schemas/TransactionInformation'
-        testCaseInformation:
-          $ref: '#/components/schemas/TestCaseInformation'
         callbackUrl:
           type: string
           format: uri
           description: URL to notify when the transaction is complete
-          
+        callbackTimeoutSeconds:
+          type: integer
+          minimum: 1
+          example: 120
+          description: How long (in seconds) the caller will wait for the callback before timing out
+
     TransactionInformation:
       type: object
       properties:
@@ -232,18 +247,6 @@ components:
           example: "123456789"
         
     
-    TestCaseInformation:
-      type: object
-      properties:
-        testCaseName:
-          type: string
-          example: "M-TIP06.Test.01.Scenario.01"
-          description: Name of the test case
-        testCaseId:
-          type: string
-          example: "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
-          description: ID of the test case
-
     TransactionCompletionNotification:
       type: object
       required:

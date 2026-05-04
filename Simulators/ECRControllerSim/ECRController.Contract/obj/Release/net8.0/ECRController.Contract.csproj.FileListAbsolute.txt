@@ -1,0 +1,10 @@
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\bin\Release\net8.0\ECRController.Contract.deps.json
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\bin\Release\net8.0\ECRController.Contract.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ECRController.Contract.csproj.AssemblyReference.cache
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ECRController.Contract.GeneratedMSBuildEditorConfig.editorconfig
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ECRController.Contract.AssemblyInfoInputs.cache
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ECRController.Contract.AssemblyInfo.cs
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ECRController.Contract.csproj.CoreCompileInputs.cache
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ECRController.Contract.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\refint\ECRController.Contract.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Contract\obj\Release\net8.0\ref\ECRController.Contract.dll

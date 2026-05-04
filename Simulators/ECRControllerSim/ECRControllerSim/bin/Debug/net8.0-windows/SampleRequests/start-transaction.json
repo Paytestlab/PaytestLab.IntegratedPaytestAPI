@@ -1,0 +1,21 @@
+﻿{
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.00,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.00,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.00,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8100/callbacks/transaction/"
+}

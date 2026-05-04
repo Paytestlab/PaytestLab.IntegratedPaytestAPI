@@ -1,0 +1,15 @@
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\bin\Debug\net8.0\ECRController.Core.deps.json
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\bin\Debug\net8.0\ECRController.Core.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\bin\Debug\net8.0\ECRController.Core.pdb
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.csproj.AssemblyReference.cache
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.AssemblyInfoInputs.cache
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.AssemblyInfo.cs
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.csproj.CoreCompileInputs.cache
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\refint\ECRController.Core.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRController.Core.pdb
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ref\ECRController.Core.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\bin\Debug\net8.0\ECRController.Contract.dll
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\bin\Debug\net8.0\ECRController.Contract.pdb
+C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\obj\Debug\net8.0\ECRContr.99832E94.Up2Date

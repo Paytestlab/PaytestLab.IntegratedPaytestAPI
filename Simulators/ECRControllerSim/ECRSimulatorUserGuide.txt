@@ -1,0 +1,101 @@
+ECR Simulator Suite - User Guide
+================================
+
+This guide explains how to use the two components of the ECR Simulator Suite:
+
+1. Server Simulator (BullochServerSim.exe)
+2. WinForms UI (ECRControllerSim.exe)
+
+Prerequisites
+-------------
+- .NET 8.0 runtime on Windows.
+- Two appsettings.json files:
+  * BullochServer Sim folder
+  * ConnectorExtension Sim folder
+- Sample JSON requests templates in the folder defined by SampleJsonFolder.
+
+1. Server Simulator (BullochServerSim.exe)
+------------------------------------------
+Configuration (appsettings.json):
+
+{
+  "Api": {
+    "BaseUrl": "http://localhost",
+    "Port": 5000
+  },
+  "StatusIntervalSeconds": 10,
+  "TransactionIntervalSeconds": 10
+}
+
+- BaseUrl+Port: simulator listen address.
+- StatusIntervalSeconds: interval for auto-status callbacks.
+- TransactionIntervalSeconds: delay before transaction complete callback.
+
+Running:
+    BullochServerSim.exe
+
+All activity logs to console and appends to logs.txt.
+
+Key Output:
+- [REQ] entries with full headers & body.
+- [SIM], [CBK], [WARN], [ERR].
+- Transaction scheduling and abort messages.
+
+2. WinForms UI (ECRControllerSim.exe)
+-------------------------------------
+Configuration (appsettings.json):
+
+{
+  "Server": {
+    "BaseUrl": "http://localhost",
+    "Port": 5000
+  },
+  "SampleJsonFolder": "sample-requests",
+  "Callback": {
+    "BaseUrl": "http://localhost:8100/callbacks"
+  }
+}
+
+- Server: API address to send requests.
+- SampleJsonFolder: JSON request template files.
+- Callback: UI listen address for callbacks.
+
+UI Layout:
+-----------
+Left Pane (60% width):
+1. Template Buttons:
+   - Start Transaction
+   - Abort Transaction
+   - Register Webhook
+   - Unregister Webhook
+   - Get Status (green)
+2. Header Fields (show only for Start Transaction):
+   - X-TestRun-Id
+   - X-TestRun-TestCaseId
+3. JSON Editor: edit templates on the fly.
+4. Bottom Button:
+   - Send JSON (right, green)
+
+Right Pane (40% width):
+- Top half: Transaction Notifications, Status Notifications.
+- Bottom half: Log (RichTextBox) with requests, responses, callbacks, errors.
+
+Editable Templates:
+- Selecting a template loads it into the editor.
+- You can modify and then send.
+- Last-edited JSON is preserved in cache across restarts.
+
+Running:
+    ECRControllerSim.exe
+
+Workflow:
+---------
+1. Start Server Simulator.
+2. Launch WinForms UI.
+3. Select "Start Transaction" → fill headers (if needed) → Send JSON.
+4. Server console logs scheduling; after delay, it sends callback.
+5. UI shows transaction notification and logs.
+6. Use "Abort Transaction" before delay to cancel callback.
+7. Register a status webhook to see periodic status updates in UI.
+
+

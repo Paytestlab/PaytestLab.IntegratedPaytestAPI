@@ -1,0 +1,3 @@
+C:\work\Bulloch Sims\BullochEcr\BullochEcr\bin\Release\net8.0\win-x64\publish\BullochServerSim.pdb
+C:\work\Bulloch Sims\BullochEcr\BullochEcr\bin\Release\net8.0\win-x64\publish\appsettings.json
+C:\work\Bulloch Sims\BullochEcr\BullochEcr\bin\Release\net8.0\win-x64\publish\BullochServerSim.exe

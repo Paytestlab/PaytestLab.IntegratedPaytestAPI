@@ -1,0 +1,3 @@
+[SIM] Listening on http://localhost:5000/
+[SIM] Status every 10s, Tx callback after 10s
+

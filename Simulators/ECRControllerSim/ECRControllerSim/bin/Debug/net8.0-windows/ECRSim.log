@@ -1,0 +1,1594 @@
+[21:47:57][INFO] Listening for callbacks on:
+[21:47:57][INFO]   http://localhost:8300/callbacks/transaction/
+[21:47:57][INFO]   http://localhost:8300/callbacks/status/
+[21:47:57][INFO]   http://localhost:8300/callbacks/logs/
+[21:48:12][INFO] REQUEST ▶ POST /transaction/start
+[21:48:12][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[21:48:12][INFO] RESPONSE ▶ 200 OK (286 ms)
+[21:48:12][INFO] 
+[21:48:43][INFO] REQUEST ▶ POST /transaction/start
+[21:48:43][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[21:48:43][INFO] RESPONSE ▶ 200 OK (12 ms)
+[21:48:43][INFO] 
+[22:07:15][INFO] Listening for callbacks on:
+[22:07:15][INFO]   http://localhost:8300/callbacks/transaction/
+[22:07:15][INFO]   http://localhost:8300/callbacks/status/
+[22:07:15][INFO]   http://localhost:8300/callbacks/logs/
+[22:07:19][INFO] REQUEST ▶ POST /transaction/start
+[22:07:19][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:07:20][INFO] RESPONSE ▶ 200 OK (422 ms)
+[22:07:20][INFO] 
+[22:07:30][INFO] CALLBACK RECEIVED ▶ /transaction
+[22:07:30][INFO] {
+  "TransactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "TransactionStatus": "Success",
+  "AuthorizedAmount": {
+    "value": 10.0,
+    "currency": "EUR"
+  },
+  "TenderName": "Visa",
+  "PosEntry": "Chip",
+  "PANTruncated": "1234********5678",
+  "ReferenceNumber": "123456789",
+  "ReceiptMerchant": {
+    "content": "Merchant receipt lines..."
+  },
+  "ReceiptCardHolder": {
+    "content": "Cardholder receipt lines..."
+  },
+  "ReceiptCashRegister": {
+    "content": "Cash register receipt..."
+  },
+  "HostResponse": {
+    "responseCode": "00",
+    "responseMessage": "Approved",
+    "transactionDateTime": "2025-07-10T20:07:30.3153047Z"
+  }
+}
+[22:07:45][ERROR] Invalid JSON: Error reading JObject from JsonReader. Path '', line 0, position 0.
+[22:07:46][INFO] REQUEST ▶ GET /status?terminalId=26197127
+[22:07:46][INFO] RESPONSE ▶ 200 OK (28 ms)
+[22:07:46][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Ready"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[22:07:57][INFO] REQUEST ▶ POST /transaction/abort
+[22:07:57][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000"
+}
+[22:07:57][ERROR] RESPONSE ▶ 404 NotFound (5 ms)
+[22:07:57][INFO] {"message":"Transaction not found"}
+[22:07:59][INFO] REQUEST ▶ POST /webhooks/register
+[22:07:59][INFO] {
+  "terminalId": "26197127",
+  "event": "status",
+  "url": "http://localhost:8300/callbacks/status/"
+}
+[22:07:59][INFO] RESPONSE ▶ 201 Created (4 ms)
+[22:07:59][INFO] 
+[22:08:01][INFO] REQUEST ▶ GET /status?terminalId=26197127
+[22:08:01][INFO] RESPONSE ▶ 200 OK (2 ms)
+[22:08:01][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Ready"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[22:08:06][INFO] CALLBACK RECEIVED ▶ /status
+[22:08:06][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Auto-update"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[22:08:11][INFO] REQUEST ▶ POST /webhooks/unregister
+[22:08:11][INFO] {
+  "terminalId": "26197127",
+  "event": "status"
+}
+[22:08:11][INFO] RESPONSE ▶ 204 NoContent (5 ms)
+[22:08:11][INFO] 
+[22:08:11][INFO] REQUEST ▶ POST /webhooks/unregister
+[22:08:12][INFO] {
+  "terminalId": "26197127",
+  "event": "status"
+}
+[22:08:12][ERROR] RESPONSE ▶ 404 NotFound (3 ms)
+[22:08:12][INFO] {"message":"No matching webhook"}
+[22:35:51][INFO] Listening for callbacks on:
+[22:35:51][INFO]   http://localhost:8300/callbacks/transaction/
+[22:35:51][INFO]   http://localhost:8300/callbacks/status/
+[22:35:51][INFO]   http://localhost:8300/callbacks/logs/
+[22:35:57][INFO] REQUEST -> POST /transaction/start
+[22:35:57][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:35:58][ERROR] RESPONSE -> 500 InternalServerError (648 ms)
+[22:35:58][INFO] 
+[22:37:09][INFO] Listening for callbacks on:
+[22:37:09][INFO]   http://localhost:8300/callbacks/transaction/
+[22:37:09][INFO]   http://localhost:8300/callbacks/status/
+[22:37:09][INFO]   http://localhost:8300/callbacks/logs/
+[22:37:11][WARN] No template selected.
+[22:37:15][INFO] REQUEST -> POST /transaction/start
+[22:37:15][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:38:05][ERROR] RESPONSE -> 0 0 (50411 ms)
+[22:38:05][INFO] Network error: An error occurred while sending the request.
+[22:40:23][INFO] REQUEST -> POST /transaction/start
+[22:40:23][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:40:47][ERROR] RESPONSE -> 0 0 (24541 ms)
+[22:40:47][INFO] Network error: An error occurred while sending the request.
+[22:42:03][INFO] REQUEST -> POST /transaction/start
+[22:42:03][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:42:04][ERROR] RESPONSE -> 500 InternalServerError (1530 ms)
+[22:42:04][INFO] 
+[22:42:06][INFO] REQUEST -> POST /transaction/start
+[22:42:06][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:42:14][ERROR] RESPONSE -> 0 0 (7098 ms)
+[22:42:14][INFO] Network error: An error occurred while sending the request.
+[22:42:35][INFO] REQUEST -> POST /transaction/start
+[22:42:35][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:42:48][ERROR] RESPONSE -> 0 0 (12428 ms)
+[22:42:48][INFO] Network error: An error occurred while sending the request.
+[22:53:48][INFO] REQUEST -> POST /transaction/start
+[22:53:48][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[22:53:49][INFO] RESPONSE -> 200 OK (383 ms)
+[22:53:49][INFO] 
+[22:53:52][INFO] CALLBACK RECEIVED -> /transaction
+[22:53:52][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[22:53:59][INFO] CALLBACK RECEIVED -> /transaction
+[22:53:59][INFO] {
+  "TransactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "TransactionStatus": "Success",
+  "AuthorizedAmount": {
+    "value": 10.0,
+    "currency": "EUR"
+  },
+  "TenderName": "Visa",
+  "PosEntry": "Chip",
+  "PANTruncated": "1234********5678",
+  "ReferenceNumber": "123456789",
+  "ReceiptMerchant": {
+    "content": "Merchant receipt lines..."
+  },
+  "ReceiptCardHolder": {
+    "content": "Cardholder receipt lines..."
+  },
+  "ReceiptCashRegister": {
+    "content": "Cash register receipt..."
+  },
+  "HostResponse": {
+    "responseCode": "00",
+    "responseMessage": "Approved",
+    "transactionDateTime": "10/07/2025 20:53:59"
+  }
+}
+[22:54:07][INFO] CALLBACK RECEIVED -> /transaction
+[22:54:07][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[22:54:22][INFO] CALLBACK RECEIVED -> /transaction
+[22:54:22][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[22:54:37][INFO] CALLBACK RECEIVED -> /transaction
+[22:54:37][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[22:55:02][INFO] CALLBACK RECEIVED -> /transaction
+[22:55:02][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[09:15:27][INFO] Listening for callbacks on:
+[09:15:27][INFO]   http://localhost:8300/callbacks/transaction/
+[09:15:27][INFO]   http://localhost:8300/callbacks/status/
+[09:15:27][INFO]   http://localhost:8300/callbacks/logs/
+[09:15:43][INFO] REQUEST -> POST /transaction/start
+[09:15:43][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Sale",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[09:15:44][INFO] RESPONSE -> 200 OK (887 ms)
+[09:15:44][INFO] 
+[09:15:52][INFO] CALLBACK RECEIVED -> /transaction
+[09:15:52][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[09:15:58][INFO] CALLBACK RECEIVED -> /transaction
+[09:15:58][INFO] {
+  "TransactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "TransactionStatus": "Success",
+  "AuthorizedAmount": {
+    "value": 10.0,
+    "currency": "EUR"
+  },
+  "TenderName": "Visa",
+  "PosEntry": "Chip",
+  "PANTruncated": "1234********5678",
+  "ReferenceNumber": "123456789",
+  "ReceiptMerchant": {
+    "content": "Merchant receipt lines..."
+  },
+  "ReceiptCardHolder": {
+    "content": "Cardholder receipt lines..."
+  },
+  "ReceiptCashRegister": {
+    "content": "Cash register receipt..."
+  },
+  "HostResponse": {
+    "responseCode": "00",
+    "responseMessage": "Approved",
+    "transactionDateTime": "11/07/2025 07:15:54"
+  }
+}
+[09:16:04][INFO] CALLBACK RECEIVED -> /transaction
+[09:16:04][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[09:16:19][INFO] CALLBACK RECEIVED -> /transaction
+[09:16:19][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[09:27:34][INFO] Listening for callbacks on:
+[09:27:34][INFO]   http://localhost:8300/callbacks/transaction/
+[09:27:34][INFO]   http://localhost:8300/callbacks/status/
+[09:27:34][INFO]   http://localhost:8300/callbacks/logs/
+[10:00:15][INFO] Listening for callbacks on:
+[10:00:15][INFO]   http://localhost:8300/callbacks/transaction/
+[10:00:15][INFO]   http://localhost:8300/callbacks/status/
+[10:00:15][INFO]   http://localhost:8300/callbacks/logs/
+[10:33:05][INFO] REQUEST -> POST /transaction/start
+[10:33:05][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[10:33:06][INFO] RESPONSE -> 200 OK (323 ms)
+[10:33:06][INFO] 
+[10:33:19][INFO] CALLBACK RECEIVED -> /transaction
+[10:33:19][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[10:35:13][INFO] Listening for callbacks on:
+[10:35:13][INFO]   http://localhost:8300/callbacks/transaction/
+[10:35:13][INFO]   http://localhost:8300/callbacks/status/
+[10:35:13][INFO]   http://localhost:8300/callbacks/logs/
+[10:35:24][INFO] REQUEST -> POST /transaction/start
+[10:35:24][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[10:35:25][INFO] RESPONSE -> 200 OK (260 ms)
+[10:35:25][INFO] 
+[10:35:36][INFO] CALLBACK RECEIVED -> /transaction
+[10:35:36][INFO] {
+  "TransactionId": null,
+  "TransactionStatus": null,
+  "AuthorizedAmount": null,
+  "TenderName": null,
+  "PosEntry": null,
+  "PANTruncated": null,
+  "ReferenceNumber": null,
+  "ReceiptMerchant": null,
+  "ReceiptCardHolder": null,
+  "ReceiptCashRegister": null,
+  "HostResponse": null
+}
+[10:36:41][INFO] Listening for callbacks on:
+[10:36:41][INFO]   http://localhost:8300/callbacks/transaction/
+[10:36:41][INFO]   http://localhost:8300/callbacks/status/
+[10:36:41][INFO]   http://localhost:8300/callbacks/logs/
+[10:36:47][INFO] REQUEST -> POST /transaction/start
+[10:36:47][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[10:36:47][INFO] RESPONSE -> 200 OK (236 ms)
+[10:36:47][INFO] 
+[11:33:33][INFO] Listening for callbacks on:
+[11:33:33][INFO]   http://localhost:8300/callbacks/transaction/
+[11:33:33][INFO]   http://localhost:8300/callbacks/status/
+[11:33:33][INFO]   http://localhost:8300/callbacks/logs/
+[11:36:29][INFO] Listening for callbacks on:
+[11:36:29][INFO]   http://localhost:8300/callbacks/transaction/
+[11:36:29][INFO]   http://localhost:8300/callbacks/status/
+[11:36:29][INFO]   http://localhost:8300/callbacks/logs/
+[14:45:52][INFO] Listening for callbacks on:
+[14:45:52][INFO]   http://localhost:8300/callbacks/transaction/
+[14:45:52][INFO]   http://localhost:8300/callbacks/status/
+[14:45:52][INFO]   http://localhost:8300/callbacks/logs/
+[14:46:19][INFO] Listening for callbacks on:
+[14:46:19][INFO]   http://localhost:8300/callbacks/transaction/
+[14:46:19][INFO]   http://localhost:8300/callbacks/status/
+[14:46:19][INFO]   http://localhost:8300/callbacks/logs/
+[14:46:36][INFO] Listening for callbacks on:
+[14:46:36][INFO]   http://localhost:8300/callbacks/transaction/
+[14:46:36][INFO]   http://localhost:8300/callbacks/status/
+[14:46:36][INFO]   http://localhost:8300/callbacks/logs/
+[14:46:51][INFO] Listening for callbacks on:
+[14:46:51][INFO]   http://localhost:8300/callbacks/transaction/
+[14:46:51][INFO]   http://localhost:8300/callbacks/status/
+[14:46:51][INFO]   http://localhost:8300/callbacks/logs/
+[14:48:41][INFO] Listening for callbacks on:
+[14:48:41][INFO]   http://localhost:8300/callbacks/transaction/
+[14:48:41][INFO]   http://localhost:8300/callbacks/status/
+[14:48:41][INFO]   http://localhost:8300/callbacks/logs/
+[14:48:45][INFO] REQUEST → POST /transaction/start
+[14:48:45][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "testCaseInformation": {
+    "testCaseName": "M-TIP06.Test.01.Scenario.01",
+    "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[14:48:50][ERROR] RESPONSE → 503 ServiceUnavailable (4461 ms)
+[14:48:50][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[14:48:55][INFO] REQUEST → GET /status?terminalId=26197127
+[14:48:59][ERROR] RESPONSE → 503 ServiceUnavailable (4085 ms)
+[14:48:59][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[14:49:05][INFO] REQUEST → POST /webhooks/register
+[14:49:05][INFO] {
+  "terminalId": "26197127",
+  "event": "status",
+  "url": "http://localhost:8300/callbacks/status/"
+}
+[14:49:09][ERROR] RESPONSE → 503 ServiceUnavailable (4119 ms)
+[14:49:09][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[14:49:16][WARN] Invalid JSON: Error reading JObject from JsonReader. Path '', line 0, position 0.
+[14:49:28][INFO] REQUEST → POST /transaction/abort
+[14:49:28][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000"
+}
+[14:49:32][ERROR] RESPONSE → 503 ServiceUnavailable (4094 ms)
+[14:49:32][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[14:50:10][INFO] Listening for callbacks on:
+[14:50:10][INFO]   http://localhost:8300/callbacks/transaction/
+[14:50:10][INFO]   http://localhost:8300/callbacks/status/
+[14:50:10][INFO]   http://localhost:8300/callbacks/logs/
+[14:52:17][INFO] Listening for callbacks on:
+[14:52:17][INFO]   http://localhost:8300/callbacks/transaction/
+[14:52:17][INFO]   http://localhost:8300/callbacks/status/
+[14:52:17][INFO]   http://localhost:8300/callbacks/logs/
+[14:54:28][INFO] Listening for callbacks on:
+[14:54:28][INFO]   http://localhost:8300/callbacks/transaction/
+[14:54:28][INFO]   http://localhost:8300/callbacks/status/
+[14:54:28][INFO]   http://localhost:8300/callbacks/logs/
+[14:58:16][INFO] Listening for callbacks on:
+[14:58:16][INFO]   http://localhost:8300/callbacks/transaction/
+[14:58:16][INFO]   http://localhost:8300/callbacks/status/
+[14:58:16][INFO]   http://localhost:8300/callbacks/logs/
+[14:58:24][INFO] Listening for callbacks on:
+[14:58:24][INFO]   http://localhost:8300/callbacks/transaction/
+[14:58:24][INFO]   http://localhost:8300/callbacks/status/
+[14:58:24][INFO]   http://localhost:8300/callbacks/logs/
+[14:58:38][INFO] Listening for callbacks on:
+[14:58:38][INFO]   http://localhost:8300/callbacks/transaction/
+[14:58:38][INFO]   http://localhost:8300/callbacks/status/
+[14:58:38][INFO]   http://localhost:8300/callbacks/logs/
+[14:59:13][INFO] Listening for callbacks on:
+[14:59:13][INFO]   http://localhost:8300/callbacks/transaction/
+[14:59:13][INFO]   http://localhost:8300/callbacks/status/
+[14:59:13][INFO]   http://localhost:8300/callbacks/logs/
+[15:03:15][INFO] Listening for callbacks on:
+[15:03:15][INFO]   http://localhost:8300/callbacks/transaction/
+[15:03:15][INFO]   http://localhost:8300/callbacks/status/
+[15:03:15][INFO]   http://localhost:8300/callbacks/logs/
+[15:03:24][INFO] REQUEST → GET /status?terminalId=26197127
+[15:03:29][ERROR] RESPONSE → 503 ServiceUnavailable (4288 ms)
+[15:03:29][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[15:03:34][INFO] REQUEST → POST /transaction/start
+[15:03:34][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:03:38][ERROR] RESPONSE → 503 ServiceUnavailable (4206 ms)
+[15:03:38][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[15:03:51][INFO] REQUEST → POST /webhooks/register
+[15:03:51][INFO] {
+  "terminalId": "26197127",
+  "event": "status",
+  "url": "http://localhost:8300/callbacks/status/"
+}
+[15:03:55][ERROR] RESPONSE → 503 ServiceUnavailable (4089 ms)
+[15:03:55][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[15:08:06][INFO] Listening for callbacks on:
+[15:08:06][INFO]   http://localhost:8300/callbacks/transaction/
+[15:08:06][INFO]   http://localhost:8300/callbacks/status/
+[15:08:06][INFO]   http://localhost:8300/callbacks/logs/
+[15:09:14][INFO] Listening for callbacks on:
+[15:09:14][INFO]   http://localhost:8300/callbacks/transaction/
+[15:09:14][INFO]   http://localhost:8300/callbacks/status/
+[15:09:14][INFO]   http://localhost:8300/callbacks/logs/
+[15:09:27][INFO] REQUEST → POST /transaction/start
+[15:09:27][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:09:28][INFO] RESPONSE → 200 OK (495 ms)
+[15:09:28][INFO] 
+[15:10:03][INFO] REQUEST → GET /status?terminalId=26197127
+[15:10:03][INFO] RESPONSE → 200 OK (23 ms)
+[15:10:03][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Ready"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[15:10:11][INFO] REQUEST → POST /transaction/start
+[15:10:11][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:10:11][INFO] RESPONSE → 200 OK (3 ms)
+[15:10:11][INFO] 
+[15:13:19][INFO] Listening for callbacks on:
+[15:13:19][INFO]   http://localhost:8300/callbacks/transaction/
+[15:13:19][INFO]   http://localhost:8300/callbacks/status/
+[15:13:19][INFO]   http://localhost:8300/callbacks/logs/
+[15:13:22][INFO] REQUEST → POST /transaction/start
+[15:13:22][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:13:22][INFO] RESPONSE → 200 OK (215 ms)
+[15:13:22][INFO] 
+[15:14:19][INFO] Listening for callbacks on:
+[15:14:19][INFO]   http://localhost:8300/callbacks/transaction/
+[15:14:19][INFO]   http://localhost:8300/callbacks/status/
+[15:14:19][INFO]   http://localhost:8300/callbacks/logs/
+[15:14:22][INFO] REQUEST → POST /transaction/start
+[15:14:22][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:14:22][INFO] RESPONSE → 200 OK (222 ms)
+[15:14:22][INFO] 
+[15:14:37][INFO] CALLBACK RECEIVED → /transaction
+[15:14:37][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "transactionStatus": "Success",
+  "authorizedAmount": {
+    "value": 10.0,
+    "currency": "EUR"
+  },
+  "tenderName": "Visa",
+  "posEntry": "Chip",
+  "PANTruncated": "1234********5678",
+  "referenceNumber": "123456789",
+  "receiptMerchant": {
+    "content": "Merchant receipt lines..."
+  },
+  "receiptCardHolder": {
+    "content": "Cardholder receipt lines..."
+  },
+  "receiptCashRegister": {
+    "content": "Cash register receipt..."
+  },
+  "hostResponse": {
+    "responseCode": "00",
+    "responseMessage": "Approved",
+    "transactionDateTime": "2025-07-11T13:14:32.3207062Z"
+  }
+}
+[15:15:30][INFO] Listening for callbacks on:
+[15:15:30][INFO]   http://localhost:8300/callbacks/transaction/
+[15:15:30][INFO]   http://localhost:8300/callbacks/status/
+[15:15:30][INFO]   http://localhost:8300/callbacks/logs/
+[15:15:35][INFO] REQUEST → POST /transaction/start
+[15:15:35][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:15:35][INFO] RESPONSE → 200 OK (535 ms)
+[15:15:35][INFO] 
+[15:17:25][INFO] Listening for callbacks on:
+[15:17:25][INFO]   http://localhost:8300/callbacks/transaction/
+[15:17:25][INFO]   http://localhost:8300/callbacks/status/
+[15:17:25][INFO]   http://localhost:8300/callbacks/logs/
+[15:17:29][INFO] REQUEST → POST /transaction/start
+[15:17:29][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:17:29][INFO] RESPONSE → 200 OK (212 ms)
+[15:17:29][INFO] 
+[15:17:41][INFO] UNKNOWN CALLBACK or /logs →
+[15:17:41][INFO] Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EndProcessProperty(Object newObject, JsonReader reader, JsonObjectContract contract, Int32 initialDepth, JsonProperty property, PropertyPresence presence, Boolean setDefaultValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at ECRController.Core.EcrController.RouteCallback(String path, String json) in C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\EcrController.cs:line 68
+
+[15:19:40][INFO] Listening for callbacks on:
+[15:19:40][INFO]   http://localhost:8300/callbacks/transaction/
+[15:19:40][INFO]   http://localhost:8300/callbacks/status/
+[15:19:40][INFO]   http://localhost:8300/callbacks/logs/
+[15:19:43][INFO] REQUEST → POST /transaction/start
+[15:19:43][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:19:43][INFO] RESPONSE → 200 OK (222 ms)
+[15:19:43][INFO] 
+[15:19:55][WARN] UNKNOWN CALLBACK or /logs →
+[15:19:55][WARN] Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EndProcessProperty(Object newObject, JsonReader reader, JsonObjectContract contract, Int32 initialDepth, JsonProperty property, PropertyPresence presence, Boolean setDefaultValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at ECRController.Core.EcrController.RouteCallback(String path, String json) in C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\EcrController.cs:line 68
+
+[15:20:06][INFO] REQUEST → POST /transaction/start
+[15:20:06][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:20:06][INFO] RESPONSE → 200 OK (4 ms)
+[15:20:06][INFO] 
+[15:20:18][WARN] UNKNOWN CALLBACK or /logs →
+[15:20:18][WARN] Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EndProcessProperty(Object newObject, JsonReader reader, JsonObjectContract contract, Int32 initialDepth, JsonProperty property, PropertyPresence presence, Boolean setDefaultValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at ECRController.Core.EcrController.RouteCallback(String path, String json) in C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\EcrController.cs:line 68
+
+[15:20:20][INFO] REQUEST → GET /status?terminalId=26197127
+[15:20:20][INFO] RESPONSE → 200 OK (14 ms)
+[15:20:20][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Ready"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[15:20:24][INFO] REQUEST → POST /webhooks/register
+[15:20:24][INFO] {
+  "terminalId": "26197127",
+  "event": "status",
+  "url": "http://localhost:8300/callbacks/status/"
+}
+[15:20:24][INFO] RESPONSE → 201 Created (7 ms)
+[15:20:24][INFO] 
+[15:20:29][INFO] CALLBACK RECEIVED → /status
+[15:20:29][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Auto-update"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[15:20:43][INFO] CALLBACK RECEIVED → /status
+[15:20:43][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Auto-update"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[15:21:11][INFO] Listening for callbacks on:
+[15:21:11][INFO]   http://localhost:8300/callbacks/transaction/
+[15:21:11][INFO]   http://localhost:8300/callbacks/status/
+[15:21:11][INFO]   http://localhost:8300/callbacks/logs/
+[15:21:18][INFO] CALLBACK RECEIVED → /status
+[15:21:18][INFO] {
+  "terminalId": "26197127",
+  "terminalStatus": {
+    "status": "idle",
+    "displayContent": "Auto-update"
+  },
+  "ECRStatus": {
+    "displayContent": "OK"
+  }
+}
+[15:21:22][INFO] REQUEST → POST /webhooks/unregister
+[15:21:22][INFO] {
+  "terminalId": "26197127",
+  "event": "status"
+}
+[15:21:22][INFO] RESPONSE → 204 NoContent (118 ms)
+[15:21:22][INFO] 
+[15:21:26][INFO] REQUEST → POST /transaction/start
+[15:21:26][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[15:21:26][INFO] RESPONSE → 200 OK (26 ms)
+[15:21:26][INFO] 
+[15:21:37][WARN] UNKNOWN CALLBACK or /logs →
+[15:21:37][WARN] Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+
+[15:44:54][INFO] Listening for callbacks on:
+[15:44:55][INFO]   http://localhost:8300/callbacks/transaction/
+[15:44:55][INFO]   http://localhost:8300/callbacks/status/
+[15:44:55][INFO]   http://localhost:8300/callbacks/logs/
+[15:48:51][INFO] Listening for callbacks on:
+[15:48:51][INFO]   http://localhost:8300/callbacks/transaction/
+[15:48:51][INFO]   http://localhost:8300/callbacks/status/
+[15:48:51][INFO]   http://localhost:8300/callbacks/logs/
+[15:49:53][INFO] Listening for callbacks on:
+[15:49:53][INFO]   http://localhost:8300/callbacks/transaction/
+[15:49:53][INFO]   http://localhost:8300/callbacks/status/
+[15:49:53][INFO]   http://localhost:8300/callbacks/logs/
+[16:02:53][INFO] Listening for callbacks on:
+[16:02:53][INFO]   http://localhost:8300/callbacks/transaction/
+[16:02:53][INFO]   http://localhost:8300/callbacks/status/
+[16:02:53][INFO]   http://localhost:8300/callbacks/logs/
+[16:04:12][INFO] Listening for callbacks on:
+[16:04:12][INFO]   http://localhost:8300/callbacks/transaction/
+[16:04:12][INFO]   http://localhost:8300/callbacks/status/
+[16:04:12][INFO]   http://localhost:8300/callbacks/logs/
+[16:14:41][INFO] Listening for callbacks on:
+[16:14:41][INFO]   http://localhost:8300/callbacks/transaction/
+[16:14:41][INFO]   http://localhost:8300/callbacks/status/
+[16:14:41][INFO]   http://localhost:8300/callbacks/logs/
+[16:15:15][INFO] Listening for callbacks on:
+[16:15:15][INFO]   http://localhost:8300/callbacks/transaction/
+[16:15:15][INFO]   http://localhost:8300/callbacks/status/
+[16:15:15][INFO]   http://localhost:8300/callbacks/logs/
+[16:15:37][INFO] Listening for callbacks on:
+[16:15:37][INFO]   http://localhost:8300/callbacks/transaction/
+[16:15:37][INFO]   http://localhost:8300/callbacks/status/
+[16:15:37][INFO]   http://localhost:8300/callbacks/logs/
+[16:17:44][INFO] REQUEST → POST /transaction/start
+[16:17:44][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[16:17:44][INFO] RESPONSE → 200 OK (413 ms)
+[16:17:44][INFO] 
+[16:17:58][INFO] CALLBACK RECEIVED → /transaction
+[16:17:58][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "transactionStatus": "Success",
+  "authorizedAmount": {
+    "value": 10.0,
+    "currency": "EUR"
+  },
+  "tenderName": "Visa",
+  "posEntry": "Chip",
+  "PANTruncated": "1234********5678",
+  "referenceNumber": "123456789",
+  "receiptMerchant": {
+    "content": "Merchant receipt lines..."
+  },
+  "receiptCardHolder": {
+    "content": "Cardholder receipt lines..."
+  },
+  "receiptCashRegister": {
+    "content": "Cash register receipt..."
+  },
+  "hostResponse": {
+    "responseCode": "00",
+    "responseMessage": "Approved",
+    "transactionDateTime": "2025-07-11T14:17:54.5274027Z"
+  }
+}
+[16:18:18][INFO] REQUEST → POST /transaction/start
+[16:18:18][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[16:18:22][ERROR] RESPONSE → 503 ServiceUnavailable (4156 ms)
+[16:18:22][INFO] Network error: No connection could be made because the target machine actively refused it. (localhost:5000)
+[16:19:25][INFO] REQUEST → POST /transaction/start
+[16:19:25][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[16:19:25][INFO] RESPONSE → 200 OK (221 ms)
+[16:19:25][INFO] 
+[16:19:36][WARN] UNKNOWN CALLBACK or /logs →
+[16:19:36][WARN] Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+
+[16:21:13][INFO] Listening for callbacks on:
+[16:21:13][INFO]   http://localhost:8300/callbacks/transaction/
+[16:21:13][INFO]   http://localhost:8300/callbacks/status/
+[16:21:13][INFO]   http://localhost:8300/callbacks/logs/
+[16:21:24][INFO] Listening for callbacks on:
+[16:21:24][INFO]   http://localhost:8300/callbacks/transaction/
+[16:21:24][INFO]   http://localhost:8300/callbacks/status/
+[16:21:24][INFO]   http://localhost:8300/callbacks/logs/
+[16:24:52][INFO] Listening for callbacks on:
+[16:24:52][INFO]   http://localhost:8300/callbacks/transaction/
+[16:24:52][INFO]   http://localhost:8300/callbacks/status/
+[16:24:52][INFO]   http://localhost:8300/callbacks/logs/
+[16:33:20][INFO] Listening for callbacks on:
+[16:33:20][INFO]   http://localhost:8300/callbacks/transaction/
+[16:33:20][INFO]   http://localhost:8300/callbacks/status/
+[16:35:20][WARN] UNKNOWN CALLBACK or /logs ->
+[16:35:20][WARN] [unknown:/callbacks]
+{
+    "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+    "terminalId": "26197127",
+    "transactionInformation": {
+        "transactionType": "Purchase",
+        "amount": {
+            "value": 100.00,
+            "currency": "EUR"
+        },
+        "amountTip": {
+            "value": 5.00,
+            "currency": "EUR"
+        },
+        "amountOther": {
+            "value": 0.00,
+            "currency": "EUR"
+        },
+        "referenceNumber": "123456789"
+    },
+    "testCaseInformation": {
+        "testCaseName": "M-TIP06.Test.01.Scenario.01",
+        "testCaseId": "58d3cfab-b0a3-4ea9-8465-6fb3623a682a"
+    },
+    "callbackUrl": "http://localhost:8100/callbacks/transaction"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[16:40:11][INFO] Listening for callbacks on:
+[16:40:11][INFO]   http://localhost:8300/callbacks/transaction/
+[16:40:12][INFO]   http://localhost:8300/callbacks/status/
+[16:40:25][INFO] REQUEST -> POST /transaction/start
+[16:40:25][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[16:40:25][INFO] RESPONSE -> 200 OK (432 ms)
+[16:40:25][INFO] 
+[16:40:42][WARN] UNKNOWN CALLBACK →
+[16:40:42][ERROR] Malformed JSON: Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EndProcessProperty(Object newObject, JsonReader reader, JsonObjectContract contract, Int32 initialDepth, JsonProperty property, PropertyPresence presence, Boolean setDefaultValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at ECRController.Core.EcrController.RouteCallback(String path, String json) in C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\EcrController.cs:line 68
+
+[16:50:34][INFO] Listening for callbacks on:
+[16:50:34][INFO]   http://localhost:8300/callbacks/transaction/
+[16:50:34][INFO]   http://localhost:8300/callbacks/status/
+[16:50:57][INFO] REQUEST -> POST /transaction/start
+[16:50:57][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[16:50:58][INFO] RESPONSE -> 200 OK (445 ms)
+[16:50:58][INFO] 
+[16:51:00][INFO] REQUEST -> POST /transaction/start
+[16:51:00][INFO] {
+  "transactionId": "123e4567-e89b-12d3-a456-426614174000",
+  "terminalId": "26197127",
+  "transactionInformation": {
+    "transactionType": "Purchase",
+    "amount": {
+      "value": 10.0,
+      "currency": "EUR"
+    },
+    "amountTip": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "amountOther": {
+      "value": 0.0,
+      "currency": "EUR"
+    },
+    "referenceNumber": "123456789"
+  },
+  "callbackUrl": "http://localhost:8300/callbacks/transaction/"
+}
+[16:51:00][INFO] RESPONSE -> 200 OK (6 ms)
+[16:51:00][INFO] 
+[16:51:10][WARN] UNKNOWN CALLBACK →
+[16:51:12][ERROR] Malformed JSON: Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EndProcessProperty(Object newObject, JsonReader reader, JsonObjectContract contract, Int32 initialDepth, JsonProperty property, PropertyPresence presence, Boolean setDefaultValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at ECRController.Core.EcrController.RouteCallback(String path, String json) in C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\EcrController.cs:line 68
+
+[16:51:12][WARN] UNKNOWN CALLBACK →
+[16:51:12][ERROR] Malformed JSON: Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Error handling callback 'transaction':
+  JsonSerializationException: Required property 'transactionId' expects a value but got null. Path '', line 1, position 505.
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EndProcessProperty(Object newObject, JsonReader reader, JsonObjectContract contract, Int32 initialDepth, JsonProperty property, PropertyPresence presence, Boolean setDefaultValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at ECRController.Core.EcrController.RouteCallback(String path, String json) in C:\work\Bulloch Sims\ECRControllerSim\ECRController.Core\EcrController.cs:line 68
+

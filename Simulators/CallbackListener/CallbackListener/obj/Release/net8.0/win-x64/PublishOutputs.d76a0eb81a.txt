@@ -1,0 +1,3 @@
+C:\work\Bulloch Sims\CallbackListener\CallbackListener\bin\Release\net8.0\win-x64\publish\CallbackListener.pdb
+C:\work\Bulloch Sims\CallbackListener\CallbackListener\bin\Release\net8.0\win-x64\publish\appsettings.json
+C:\work\Bulloch Sims\CallbackListener\CallbackListener\bin\Release\net8.0\win-x64\publish\CallbackListener.exe

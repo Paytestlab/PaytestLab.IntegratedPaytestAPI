@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rIBvGK3KoPk=",
+  "success": true,
+  "projectFilePath": "C:\\work\\Bulloch Sims\\ECRControllerSim\\ECRController.Core\\ECRController.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DavidRenko\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

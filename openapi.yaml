@@ -4,7 +4,7 @@ info:
   contact:
     name: Support
     email: support@paytestlab.com
-  version: 1.0.2
+  version: 1.0.3
 servers:
   - url: https://127.0.0.1:[port]
 tags:
@@ -37,6 +37,12 @@ paths:
                 $ref: '#/components/schemas/InitiateSessionResponse'
         '400':
           description: Invalid request
+        '404':
+          description: 	Terminal with id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Failed to initiate the session
           content:
@@ -65,6 +71,10 @@ paths:
                 $ref: '#/components/schemas/CompleteSessionResponse'
         '404':
           description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Failed to complete the session
           content:
@@ -98,10 +108,16 @@ paths:
             schema:
               $ref: '#/components/schemas/StartTransactionRequest'
       responses:
-        '200':
+        '204':
           description: Transaction started successfully
         '400':
           description: Invalid request
+        '404':
+          description: Session id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Failed to start the transaction
           content:
@@ -137,6 +153,14 @@ paths:
       responses:
         '204':
           description: Transaction aborted successfully
+        '400':
+          description: 	Invalid request
+        '404':
+          description: Session id or transaction id is not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Failed to abort the transaction
           content:
@@ -246,6 +270,10 @@ paths:
           description: Webhook removed successfully
         '404':
           description: No matching webhook found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '400':
           description: Invalid request (e.g., missing terminalId)
       
@@ -421,6 +449,9 @@ components:
     
     Amount:
       type: object
+      required:
+        - value
+        - currency
       properties:
         value:
           type: number
@@ -457,8 +488,13 @@ components:
     AbortTransactionRequest:
       type: object
       required:
+        - sessionId
         - transactionId
       properties:
+        sessionId:
+          type: string
+          description: Identifier returned from /session/initiate
+          example: "0b9c4f6a-7f7c-4a2b-9f36-2d0a4a7d1b55"
         transactionId:
           type: string
           description:  Unique identifier for the transaction (from the request)

@@ -4,16 +4,84 @@ info:
   contact:
     name: Support
     email: support@paytestlab.com
-  version: 1.0.2
+  version: 1.0.3
 servers:
   - url: https://127.0.0.1:[port]
 tags:
+  - name: session
+    description: Used for controlling a test session
   - name: transaction
     description: Used for controlling transactions
   - name: status
     description: Used to get terminal status
 
 paths:
+  /session/initiate:
+    post:
+      tags:
+        - session
+      summary: Initiates a test session
+      description: Must be called before any transactions are started. Returns a sessionId that is used to correlate transactions within the session.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiateSessionRequest'
+      responses:
+        '200':
+          description: Session initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitiateSessionResponse'
+        '400':
+          description: Invalid request
+        '404':
+          description: 	Terminal with id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Failed to initiate the session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /session/complete:
+    post:
+      tags:
+        - session
+      summary: Completes a test session
+      description: Called once no more transactions will be executed. The server returns a summary of the session.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteSessionRequest'
+      responses:
+        '200':
+          description: Session completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompleteSessionResponse'
+        '404':
+          description: Session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Failed to complete the session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /transaction/start:
     post:
       tags:
@@ -40,10 +108,16 @@ paths:
             schema:
               $ref: '#/components/schemas/StartTransactionRequest'
       responses:
-        '200':
+        '204':
           description: Transaction started successfully
         '400':
           description: Invalid request
+        '404':
+          description: Session id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Failed to start the transaction
           content:
@@ -79,6 +153,14 @@ paths:
       responses:
         '204':
           description: Transaction aborted successfully
+        '400':
+          description: 	Invalid request
+        '404':
+          description: Session id or transaction id is not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '500':
           description: Failed to abort the transaction
           content:
@@ -188,20 +270,104 @@ paths:
           description: Webhook removed successfully
         '404':
           description: No matching webhook found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '400':
           description: Invalid request (e.g., missing terminalId)
       
       
 components:
   schemas:
+    InitiateSessionRequest:
+      type: object
+      required:
+        - terminalId
+      properties:
+        terminalId:
+          type: string
+          description: Terminal on which the session will be run
+          example: "26197127"
+
+    InitiateSessionResponse:
+      type: object
+      required:
+        - sessionId
+      properties:
+        sessionId:
+          type: string
+          description: Identifier for the session, to be referenced by subsequent transactions
+          example: "0b9c4f6a-7f7c-4a2b-9f36-2d0a4a7d1b55"
+
+    CompleteSessionRequest:
+      type: object
+      required:
+        - sessionId
+      properties:
+        sessionId:
+          type: string
+          description: Identifier of the session to complete
+          example: "0b9c4f6a-7f7c-4a2b-9f36-2d0a4a7d1b55"
+
+    CompleteSessionResponse:
+      type: object
+      required:
+        - sessionId
+        - result
+        - transactionCount
+        - transactions
+      properties:
+        sessionId:
+          type: string
+        result:
+          type: string
+          enum:
+            - Success
+            - Error
+          description: Overall outcome of the session
+        transactionCount:
+          type: integer
+          description: Number of transactions executed in the session
+          example: 3
+        transactions:
+          type: array
+          description: List of transactions executed in the session
+          items:
+            $ref: '#/components/schemas/SessionTransactionSummary'
+        errorMessage:
+          type: string
+          description: Populated when result is Error
+
+    SessionTransactionSummary:
+      type: object
+      required:
+        - transactionId
+        - transactionStatus
+      properties:
+        transactionId:
+          type: string
+        transactionStatus:
+          type: string
+          enum:
+            - Success
+            - Failed
+        authorizedAmount:
+          $ref: '#/components/schemas/Amount'
+
     StartTransactionRequest:
       type: object
       required:
+        - sessionId
         - transactionId
         - terminalId
         - transactionInformation
         - callbackUrl
       properties:
+        sessionId:
+          type: string
+          description: Identifier returned from /session/initiate
+          example: "0b9c4f6a-7f7c-4a2b-9f36-2d0a4a7d1b55"
         transactionId:
           type: string
           description: Unique identifier for the transaction provided by the client
@@ -283,6 +449,9 @@ components:
     
     Amount:
       type: object
+      required:
+        - value
+        - currency
       properties:
         value:
           type: number
@@ -319,8 +488,13 @@ components:
     AbortTransactionRequest:
       type: object
       required:
+        - sessionId
         - transactionId
       properties:
+        sessionId:
+          type: string
+          description: Identifier returned from /session/initiate
+          example: "0b9c4f6a-7f7c-4a2b-9f36-2d0a4a7d1b55"
         transactionId:
           type: string
           description:  Unique identifier for the transaction (from the request)
@@ -375,12 +549,14 @@ components:
           description: The ID of the terminal
         status:
           type: string
-          enum: 
-            - idle
-            - activated
-            - pinEntry
+          enum:
             - waitingForCard
-            - disconnected
+            - applicationSelection
+            - pinEntry
+            - authorizing
+            - tipEntry
+            - dcc
+            - installments
           description: Current status of the terminal
         timestamp:
           type: string

@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "PaytestLab.IntegratedPaytestAPI.Client": {
+      "commandName": "Project"
+    }
+  }
+}

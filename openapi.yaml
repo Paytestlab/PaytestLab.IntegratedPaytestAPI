@@ -350,8 +350,11 @@ components:
         transactionStatus:
           type: string
           enum:
+            - Unknown
             - Success
             - Failed
+            - Approved
+            - Declined
         authorizedAmount:
           $ref: '#/components/schemas/Amount'
 
@@ -426,8 +429,11 @@ components:
           type: string
           description: Final status of the transaction
           enum:
+            - Unknown
             - Success
             - Failed
+            - Approved
+            - Declined
         authorizedAmount:
           $ref: '#/components/schemas/Amount'
         tenderName:
@@ -446,6 +452,9 @@ components:
           $ref: '#/components/schemas/Receipt'
         hostResponse:
           $ref: '#/components/schemas/HostResponse'
+        iccData:
+          type: object
+          additionalProperties: true
     
     Amount:
       type: object
@@ -511,9 +520,13 @@ components:
 
     Status:
       required:
+        - terminalId
         - terminalStatus
       type: object
       properties:
+        terminalId:
+          type: string
+          example: 26197127
         terminalStatus:
           $ref: '#/components/schemas/TerminalStatus'
         ECRStatus:
@@ -525,7 +538,17 @@ components:
         displayContent:
           type: string
           example: Present Card
-
+        status:
+          type: string
+          enum:
+            - Unknown
+            - WaitingForCard
+            - ApplicationSelection
+            - PinEntry
+            - Authorizing
+            - TipEntry
+            - Dcc
+            - Installments
     ECRStatus:
       type: object
       properties:

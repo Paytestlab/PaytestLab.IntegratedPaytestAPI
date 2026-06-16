@@ -184,7 +184,7 @@ internal class ServerSimulator
         }
 
         _transactionWebhooks[req.TransactionId] = req.CallbackUrl;
-        ctx.Response.StatusCode = 200;
+        ctx.Response.StatusCode = 204;
         Log($"[SIM] Transaction {req.TransactionId} started; callback in {_transactionInterval}s -> {req.CallbackUrl}");
 
         _ = Task.Run(async () =>
@@ -310,7 +310,7 @@ internal class ServerSimulator
 
         _activeSessions.TryRemove(session.Key, out _);
 
-        ctx.Response.StatusCode = 204;
+        ctx.Response.StatusCode = 200;
         Log($"[SIM] Session {req.SessionId} completed");
     }
 

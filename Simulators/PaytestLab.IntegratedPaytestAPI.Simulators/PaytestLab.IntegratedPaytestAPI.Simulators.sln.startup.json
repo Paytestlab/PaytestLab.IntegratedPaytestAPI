@@ -1,0 +1,18 @@
+{
+  "Version": 3,
+
+  "ListAllProjects": true,
+
+  "MultiProjectConfigurations": {
+    "UI + Server": {
+      "Projects": {
+        "PaytestLab.IntegratedPaytestAPI.Client": {
+          "StartProject": true
+        },
+        "PaytestLab.IntegratedPaytestAPI.ServerSimulator": {
+          "StartProject": true
+        }
+      }
+    }
+  }
+}

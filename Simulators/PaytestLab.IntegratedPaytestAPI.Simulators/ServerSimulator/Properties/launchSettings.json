@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "PaytestLab.IntegratedPaytestAPI.ServerSimulator": {
+      "commandName": "Project"
+    }
+  }
+}
